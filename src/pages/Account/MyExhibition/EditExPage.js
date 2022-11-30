@@ -322,18 +322,18 @@ const EditExPage = () => {
       sendData.append('picture3Link', data.picture3Link);//存資料庫撈回來的原路徑(方便後端刪除檔案)
       sendData.append('mapImgLink', data.mapImgLink);//存資料庫撈回來的原路徑(方便後端刪除檔案)
       if (typeof data.frontPictureFile === "string") {
-        sendData.append('frontPictureIsFile', false);
+        sendData.append('frontPictureIsFile', "false");
         sendData.append('frontPicture', data.frontPictureFile);
       } else {
-        sendData.append('frontPictureIsFile', true);
+        sendData.append('frontPictureIsFile', "true");
         sendData.append('frontPicture', data.frontPictureFile, data.frontPictureFile.name);
       }
       if ((data.picture2File !== "") && (data.picture2File !== null)) {
         if (typeof data.picture2File === "string") {
-          sendData.append('picture2IsFile', false);
+          sendData.append('picture2IsFile', "false");
           sendData.append('picture2', data.picture2);
         } else {
-          sendData.append('picture2IsFile', true);
+          sendData.append('picture2IsFile', "true");
           sendData.append('picture2', data.picture2File, data.picture2File.name);
         }
       } else {
@@ -342,10 +342,10 @@ const EditExPage = () => {
       }
       if ((data.picture3File !== "") && (data.picture3File !== null)) {
         if (typeof data.picture3File === "string") {
-          sendData.append('picture3IsFile', false);
+          sendData.append('picture3IsFile', "false");
           sendData.append('picture3', data.picture3);
         } else {
-          sendData.append('picture3IsFile', true);
+          sendData.append('picture3IsFile', "true");
           sendData.append('picture3', data.picture3File, data.picture3File.name);
         }
       } else {
@@ -354,10 +354,10 @@ const EditExPage = () => {
       }
       if ((data.mapImgFile !== "") && (data.mapImgFile !== null)) {
         if (typeof data.mapImgFile === "string") {
-          sendData.append('mapImgIsFile', false);
+          sendData.append('mapImgIsFile', "false");
           sendData.append('mapImg', data.picture3);
         } else {
-          sendData.append('mapImgIsFile', true);
+          sendData.append('mapImgIsFile', "true");
           sendData.append('mapImg', data.mapImgFile, data.mapImgFile.name);
         }
       } else {

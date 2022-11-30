@@ -1003,7 +1003,7 @@ switch ($act) { //用switch語法，判斷act這個變數要做哪件事
                     $frontPictureLink = "http://360.systemdynamics.tw/backendPHP/ExFrontPicture/".$frontPictureFilename;
                     move_uploaded_file($_FILES["frontPicture"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/backendPHP/ExFrontPicture/".$frontPictureFilename);
                 }else{ //不是File一定是是網址
-                    $frontPictureLink = $_REQUEST["frontPicture"];
+                    $frontPictureLink = $_REQUEST["frontPictureLink"];
                 }
                 if($picture2IsFile === "true"){ //是File
                     if($picture2Link !== ""){//表示資料庫存的原路徑不是空的
@@ -1028,7 +1028,7 @@ switch ($act) { //用switch語法，判斷act這個變數要做哪件事
                     }
                     $picture2Link = '';
                 }else{ //是網址
-                    $picture2Link = $_REQUEST["picture2"];
+                    $picture2Link = $_REQUEST["picture2Link"];
                 }
                 if($picture3IsFile === "true"){ //是File
                     if($picture3Link !== ""){//表示資料庫存的原路徑不是空的
@@ -1053,7 +1053,7 @@ switch ($act) { //用switch語法，判斷act這個變數要做哪件事
                     }
                     $picture3Link = '';
                 }else{ //是網址
-                    $picture3Link = $_REQUEST["picture3"];
+                    $picture3Link = $_REQUEST["picture3Link"];
                 }
                 if($mapImgIsFile === "true"){ //是File
                     if($mapImgLink !== ""){//表示資料庫存的原路徑不是空的
@@ -1078,7 +1078,7 @@ switch ($act) { //用switch語法，判斷act這個變數要做哪件事
                     }
                     $mapImgLink = '';
                 }else{ //是網址
-                    $mapImgLink = $_REQUEST["mapImg"];
+                    $mapImgLink = $_REQUEST["mapImgLink"];
                 }
                 //編輯展場
                 editMyExhibition($eID, $usr, $name, $eIntro, $start, $close, $frontPictureLink, $permission, $mapImgLink, $picture2Link, $picture3Link); 
