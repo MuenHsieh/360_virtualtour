@@ -28,7 +28,7 @@ const ChooseScenePosition = (props) => {
                         <Col>
                             {
                                 data.myPanoramaList.map((panorama) => {
-                                    if ((panorama.mapX > -1) || (panorama.mapY > -1)) {
+                                    if ((panorama.mapX > -1) && (panorama.mapY > -1)) {
                                         return (
                                             <Button className="checkpano_btn me-2 mb-2" key={panorama.fakeID}>
                                                 {panorama.panoramaName}

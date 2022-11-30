@@ -35,8 +35,8 @@ const AddEx4 = (props) => {
                 for (let i = 0; i < data.myPanoramaList.length; i++) {
                     if ((newMyPanoramaList[i].mapX !== undefined) &&(newMyPanoramaList[i].mapY !== undefined) &&(newMyPanoramaList[i].mapX !== null) && (newMyPanoramaList[i].mapY !== null) && (newMyPanoramaList[i].mapX !== "") && (newMyPanoramaList[i].mapY !== "")) {
                         document.getElementById('mark' + newMyPanoramaList[i].fakeID).remove();
-                        newMyPanoramaList[i].mapX = "";
-                        newMyPanoramaList[i].mapY = "";
+                        newMyPanoramaList[i].mapX = null;
+                        newMyPanoramaList[i].mapY = null;
                     }
                 }
             }
@@ -210,8 +210,8 @@ const AddEx4 = (props) => {
                                     <Button className="remove_btn" onClick={() => {
                                         var newMyPanoramaList = data.myPanoramaList;
                                         for (let i = 0; i < data.myPanoramaList.length; i++) {
-                                            newMyPanoramaList[i].mapX = "";
-                                            newMyPanoramaList[i].mapY = "";
+                                            newMyPanoramaList[i].mapX = null;
+                                            newMyPanoramaList[i].mapY = null;
                                         }
                                         setData({ ...data, mapImg: "", mapImgFile: null, myPanoramaList: newMyPanoramaList });
                                         setFailtxt("");
