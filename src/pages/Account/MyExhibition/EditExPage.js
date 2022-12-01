@@ -120,7 +120,7 @@ const EditExPage = () => {
     } else if ((phase === 4) && (data.mapImgFile !== null) && (data.mapImgFile !== "")) {//第四階段如果有設置展場平面圖要做判斷
       var pass4 = true;
       for (let i = 0; i < data.myPanoramaList.length; i++) {//檢查每個全景圖在平面圖上都有座標
-        if ((data.myPanoramaList[i].mapX === undefined) || (data.myPanoramaList[i].mapY === undefined)  || (data.myPanoramaList[i].mapX === null) || (data.myPanoramaList[i].mapY === null) ||
+        if ((data.myPanoramaList[i].mapX === -1) || (data.myPanoramaList[i].mapY === -1)  || (data.myPanoramaList[i].mapX === null) || (data.myPanoramaList[i].mapY === null) ||
           (data.myPanoramaList[i].mapX === "") || (data.myPanoramaList[i].mapY === "")) {
           pass4 = false;
           setFailtxt("注意: 每個全景圖都要標記一個位置在展場平面圖上");

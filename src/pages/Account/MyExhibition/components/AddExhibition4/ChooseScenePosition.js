@@ -28,21 +28,31 @@ const ChooseScenePosition = (props) => {
                         <Col>
                             {
                                 data.myPanoramaList.map((panorama) => {
-                                    if ((panorama.mapX > -1) && (panorama.mapY > -1)) {
-                                        return (
-                                            <Button className="checkpano_btn me-2 mb-2" key={panorama.fakeID}>
-                                                {panorama.panoramaName}
-                                                {/* x:{panorama.mapX}<br/>y:{panorama.mapY} */}
-                                            </Button>
-                                        );
-                                    } else {
+                                    if ((panorama.mapX === null) && (panorama.mapY === null)) {
                                         return (
                                             <Button className="okpano_btn me-2 mb-2" key={panorama.fakeID}>
                                                 {panorama.panoramaName}
                                                 {/* x: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y: */}
                                             </Button>
                                         )
+                                    }else{
+                                        if ((panorama.mapX > -1) && (panorama.mapY > -1) && (panorama.mapX !== null) && (panorama.mapY !== null)) {
+                                            return (
+                                                <Button className="checkpano_btn me-2 mb-2" key={panorama.fakeID}>
+                                                    {panorama.panoramaName}
+                                                    {/* x:{panorama.mapX}<br/>y:{panorama.mapY} */}
+                                                </Button>
+                                            );
+                                        } else {
+                                            return (
+                                                <Button className="okpano_btn me-2 mb-2" key={panorama.fakeID}>
+                                                    {panorama.panoramaName}
+                                                    {/* x: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y: */}
+                                                </Button>
+                                            )
+                                        }
                                     }
+                                    
                                 })
                             }
                         </Col>

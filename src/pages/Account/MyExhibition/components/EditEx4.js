@@ -33,7 +33,7 @@ const EditEx4 = (props) => {
             var newMyPanoramaList = data.myPanoramaList;//當展場平面圖換了，就要清除以前的所有標記點
             if (firstIsLoad) {//當第一次渲染平面圖已經完成
                 for (let i = 0; i < data.myPanoramaList.length; i++) {
-                    if ((newMyPanoramaList[i].mapX !== undefined) && (newMyPanoramaList[i].mapY !== undefined) && (newMyPanoramaList[i].mapX !== "") && (newMyPanoramaList[i].mapY !== "")) {
+                    if ((newMyPanoramaList[i].mapX !== undefined) && (newMyPanoramaList[i].mapY !== undefined) && (newMyPanoramaList[i].mapX !== "") && (newMyPanoramaList[i].mapY !== "")&&(newMyPanoramaList[i].mapX !== null) && (newMyPanoramaList[i].mapY !== null)) {
                         document.getElementById('mark' + newMyPanoramaList[i].fakeID).remove();
                         newMyPanoramaList[i].mapX = null;
                         newMyPanoramaList[i].mapY = null;

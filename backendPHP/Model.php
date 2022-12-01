@@ -1804,10 +1804,15 @@ function checkDeleteItemMusic($csID){
 }
 function editMyExPanorama($epID, $pID, $eID, $mapX, $mapY, $name, $smallimgLink, $musicLink){
     global $db;
+    if(($mapX === null) && ($mapY === null)){
+        $mapX = -1;
+        $mapY = -1;
+    }
     $sql = "UPDATE `exhibitivepanorama` SET `pID`= ?,`eID`= ? ,`mapX`= ? ,`mapY`= ? ,`epName`= ? ,`thumbnailLink`= ? ,`musicLink`= ? WHERE `epID` = ?;"; //sql指令的insert語法
     $stmt = mysqli_prepare($db, $sql); //prepare sql statement
     mysqli_stmt_bind_param($stmt, "iiddsssi", $pID, $eID, $mapX, $mapY, $name, $smallimgLink, $musicLink, $epID); //bind parameters with variables(將變數bind到sql指令的問號中)
     mysqli_stmt_execute($stmt);  //執行SQL
+   
 }
 function editExCustomSpot($csID, $iID, $epID, $pitch, $yaw, $itemName, $itemIntro, $imageLink, $musicLink, $imageWidth, $imageHeight){
     global $db;
