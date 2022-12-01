@@ -77,16 +77,17 @@ switch ($act) { //用switch語法，判斷act這個變數要做哪件事
         $email = $json->email;
         $gender =$json->gender;
         $intro = $json->intro;
+        $photo = $json->photo;
         
         $response = array();
-        if ((isset($first_name))&(isset($last_name))&(isset($pwd))&(isset($email))&(isset($gender))&($first_name != "")&($last_name != "")&($pwd != "")&($email != "")&($gender != "")) { 
+        if ((isset($first_name))&(isset($last_name))&(isset($pwd))&(isset($email))&(isset($gender))&(isset($photo))&($first_name != "")&($last_name != "")&($pwd != "")&($email != "")&($gender != "")&($photo != "")) { 
             //防呆，一樣做簡單邏輯判斷，當title不是空的，再將它導入函數
             if(filter_var($email, FILTER_VALIDATE_EMAIL) != true){
                 //$message = "輸入無效的電子郵件";
                 $response['status']='invalid';
                 $response['cause']='輸入無效的電子郵件';
                 echo json_encode($response);
-            }elseif(addMember($first_name,$last_name,$pwd,$email,$gender,$intro)){
+            }elseif(addMember($first_name,$last_name,$pwd,$email,$gender,$intro,$photo)){
                 //$message = "註冊成功";
                 $response['status']='valid';
                 $response['cause']='註冊成功';

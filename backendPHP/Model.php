@@ -1,7 +1,7 @@
 <?php
 require_once("dbconfig.php");
 //加入新使用者
-function addMember($first_name,$last_name,$pwd,$email,$gender,$intro) {
+function addMember($first_name,$last_name,$pwd,$email,$gender,$intro,$photo) {
     $pwdHash=password_hash($pwd, PASSWORD_DEFAULT); //將密碼hash
     global $db;
     $sql = "SELECT email FROM user WHERE email = ? ;";
@@ -12,9 +12,9 @@ function addMember($first_name,$last_name,$pwd,$email,$gender,$intro) {
     if($rs = mysqli_fetch_assoc($result)){ //檢查用戶的電子郵件有無重複
         return false;
     }else{//看有沒有抓到result那張select出來的表 
-        $sql2 = "INSERT INTO user (first_name, last_name, email, password, gender , intro) VALUES (?, ?, ?, ?, ?, ?)"; //sql指令的insert語法
+        $sql2 = "INSERT INTO user (first_name, last_name, email, password, gender , intro , photo) VALUES (?, ?, ?, ?, ?, ?, ?)"; //sql指令的insert語法
         $stmt2 = mysqli_prepare($db, $sql2); //prepare sql statement
-        mysqli_stmt_bind_param($stmt2, "ssssss", $first_name, $last_name , $email, $pwdHash, $gender, $intro); //bind parameters with variables(將變數bind到sql指令的問號中)
+        mysqli_stmt_bind_param($stmt2, "sssssss", $first_name, $last_name , $email, $pwdHash, $gender, $intro,$photo); //bind parameters with variables(將變數bind到sql指令的問號中)
         mysqli_stmt_execute($stmt2);  //執行SQL
         return true;
     }

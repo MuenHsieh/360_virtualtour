@@ -22,13 +22,20 @@ function Register() {
     }
     const submitForm = (e) => {
         e.preventDefault();
+        var sex ="";
+        if(data.gender==="male"){
+            sex = "../backendPHP/UsrImg/male.jpg";
+        }else{
+            sex = "../backendPHP/UsrImg/female.jpg";
+        }
         const sendData = {
             first_name: data.first_name,
             last_name: data.last_name,
             email: data.email,
             password: data.password,
             gender: data.gender,
-            intro: data.intro
+            intro: data.intro,
+            photo: sex
         };
         console.log(sendData);
         axios({
