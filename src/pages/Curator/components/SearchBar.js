@@ -16,6 +16,10 @@ const SearchBar = ({ placeholder, list }) => {
         // Object.values會從 object item取值，join('') 會把值轉成字串，抓展覽的 name 去比對 輸入搜尋欄的字
         Object.values(item.first_name).join('').toLowerCase().includes(searchTerm) || Object.values(item.last_name).join('').toLowerCase().includes(searchTerm)
     )
+    const searchChange = (e) => {
+        setSearchTerm(e.target.value.toLowerCase());
+        paginate(1);
+    }
     return (
         <div>
             <Row className="p-3">
@@ -26,7 +30,7 @@ const SearchBar = ({ placeholder, list }) => {
                     <input
                         className="form-control input-lg"
                         placeholder={placeholder}
-                        onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
+                        onChange={searchChange}
                     />
                 </Col>
             </Row>
