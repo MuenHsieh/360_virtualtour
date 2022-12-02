@@ -6,7 +6,7 @@ import AddPanoramaButton from './components/AddPanoramaDropdown.js';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css'
-import MySearchBar from '../components/MySearchBar.js';
+import MySearchBar from './components/MySearchBar.js';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 const MyPanorama = () => {
@@ -75,6 +75,7 @@ const MyPanorama = () => {
             }
         }
         setSearchTerm(tryToFind);
+        document.getElementById("mySearchBar").value = "";
     }
     function showWaitingPanorama() { // 列出待展出的全景圖
         var tryToFind = [];
@@ -84,6 +85,7 @@ const MyPanorama = () => {
             }
         }
         setSearchTerm(tryToFind);
+        document.getElementById("mySearchBar").value = "";
     }
     function showExhibitivePanorama() { // 列出展出中的全景圖
         var tryToFind = [];
@@ -93,6 +95,7 @@ const MyPanorama = () => {
             }
         }
         setSearchTerm(tryToFind);
+        document.getElementById("mySearchBar").value = "";
     }
     function showAllPanorama() { // 列出所有全景圖
         var tryToFind = [];
@@ -102,8 +105,14 @@ const MyPanorama = () => {
             }
         }
         setSearchTerm(tryToFind);
+        document.getElementById("mySearchBar").value = "";
     }
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    const indexOfLastPost = currentPage * postsPerPage; // 1*5 2*5
+    const indexOfFirstPost = indexOfLastPost - postsPerPage; // 5-5 10-5
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    const totalPages = searchTerm.length;
     return (
         <div>
             <Row className='pt-0 me-0' style={{ height: windowSize }}>
@@ -120,7 +129,7 @@ const MyPanorama = () => {
                     <br />
                     <Row>
                         <Col xs={3} md={2}><AddPanoramaButton /></Col>
-                        <Col xs={2} md={3}><MySearchBar list={list} setSearchTerm={setSearchTerm} /></Col>
+                        <Col xs={2} md={3}><MySearchBar list={list} setSearchTerm={setSearchTerm} paginate={paginate}/></Col>
                         <Col xs={7} md={7}>
                             <Dropdown>
                                 <Dropdown.Toggle id="otherPanorama">
@@ -137,7 +146,8 @@ const MyPanorama = () => {
                     </Row>
                     <br />
                     <Row>
-                        <PanoramaTable show={show} searchTerm={searchTerm} />
+                        <PanoramaTable show={show} searchTerm={searchTerm} postsPerPage={postsPerPage} 
+                        indexOfLastPost={indexOfLastPost} paginate={paginate} indexOfFirstPost={indexOfFirstPost} totalPages={totalPages}/>
                     </Row>
                 </Col>
             </Row>

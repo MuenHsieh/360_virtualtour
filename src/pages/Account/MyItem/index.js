@@ -8,7 +8,7 @@ import AddItem from './components/AddItem';
 import InfoCard from "./components/InfoCard.js";
 import ItemTableData from "./components/ItemTableData.js";
 import "./index.css";
-import MySearchBar from "../components/MySearchBar";
+import MySearchBar from "./components/MySearchBar";
 
 const Item = () => {
     const [windowSize, setWindowSize] = useState(window.innerHeight - 56);

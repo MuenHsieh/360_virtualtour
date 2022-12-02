@@ -7,7 +7,7 @@ import TheCuratorEx from './components/TheCuratorEx.js';
 import "./index.css";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import FOG from "vanta/dist/vanta.fog.min";
+import BIRDS from "vanta/dist/vanta.birds.min";
 import * as THREE from "three";
 
 const DetailCurator = () => {
@@ -66,22 +66,25 @@ const DetailCurator = () => {
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(
-        FOG({
-          el: "#vanta",
-          THREE: THREE,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          scale: 2,
-          scaleMobile: 1.0,
-          size: 0.90,
-          minHeight: 650.00,
-          minWidth: 500.00,
-          highlightColor: 0xd6e3e3,
-          midtoneColor: 0x6ad0e8,
-          lowlightColor: 0xd1a5a5,
-          baseColor: 0xcceac9,
-          speed: 1.10
+        BIRDS({
+            el: "#vanta",
+            THREE: THREE,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0xffffe7,
+            color1: 0x917b49,
+            color2: 0x7c8e5a,
+            birdSize: 1.10,
+            wingSpan: 22.00,
+            speedLimit: 2.00,
+            separation: 44.00,
+            alignment: 78.00,
+            quantity: 3.00
         })
       );
     }

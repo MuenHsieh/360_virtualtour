@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Table from 'react-bootstrap/Table';
 import TableData from './TableData.js';
 import Pagination from './Pagination.js';
 import { Col, Row } from 'react-bootstrap';
 import '../index.css';
 
-const PanoramaTable = ({ show, searchTerm }) => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(5);
-    const indexOfLastPost = currentPage * postsPerPage; // 1*5 2*5
-    const indexOfFirstPost = indexOfLastPost - postsPerPage; // 5-5 10-5
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+const PanoramaTable = ({ show, searchTerm, totalPages
+    , postsPerPage, indexOfLastPost, paginate, indexOfFirstPost }) => {
+
     return (
         <div>
             <Table striped bordered hover>
@@ -18,7 +15,7 @@ const PanoramaTable = ({ show, searchTerm }) => {
                     <tr>
                         <th>全景圖名稱</th>
                         <th>預覽</th>
-                        <th>底部圖</th>
+                        <th>全景縮圖</th>
                         <th>狀態</th>
                         <th>存取權限</th>
                         <th>管理功能</th>
@@ -29,7 +26,7 @@ const PanoramaTable = ({ show, searchTerm }) => {
                         show && (
                             searchTerm.slice(indexOfFirstPost, indexOfLastPost).map((panorama) => {
                                 return (
-                                    <TableData key={panorama.pID} panorama={panorama} />
+                                    <TableData key={panorama.pID} panorama={panorama} paginate={paginate}/>
                                 )
                             })
                         )
@@ -40,7 +37,7 @@ const PanoramaTable = ({ show, searchTerm }) => {
                 <Col md="auto">
                     <Pagination
                         postsPerPage={postsPerPage}
-                        totalPosts={searchTerm.length}
+                        totalPages={totalPages}
                         paginate={paginate}
                     />
                 </Col>

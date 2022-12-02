@@ -7,18 +7,13 @@ import '../index.css';
 
 const TableData = (props) => {
     const { panorama } = props;
+    const { paginate } = props;
     return (
         <>
             <tr>
                 <td>{panorama.name}</td>
                 <td><LookMyPanoramaButton name={panorama.name} imgLink={panorama.imgLink} /></td>
-                <td>
-                    {
-                        (panorama.smallimgLink !== "")&&(panorama.smallimgLink !== null)&&(
-                        <LookMyPanoramaButton name={panorama.name} imgLink={panorama.smallimgLink} />
-                        )
-                    }
-                </td>
+                <td><LookMyPanoramaButton name={panorama.name} imgLink={panorama.smallimgLink} /></td>
                 <td>
                     {panorama.status === "exhibitive" && <p style={{ color: "red" }}> 展出中 </p>}
                     {panorama.status === "waiting" && <p style={{ color: "orange" }}> 待展出 </p>}
@@ -34,7 +29,7 @@ const TableData = (props) => {
                             <EditMyPanoramaButton pID={panorama.pID} panorama={panorama} />
                         </Col>
                         <Col>
-                            <DeleteMyPanoramaButton pID={panorama.pID} />
+                            <DeleteMyPanoramaButton pID={panorama.pID} paginate={paginate}/>
                         </Col>
                     </Row>
                 </td>

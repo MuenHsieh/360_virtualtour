@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import CuratorCard from './CuratorCard.js';
 import Pagination from './Pagination.js';
 import { Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
+import "../index.css";
 
 
 const SearchBar = ({ placeholder, list }) => {
+    let history = useNavigate(); //use for Navigate on Previous
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(4);
@@ -19,6 +21,7 @@ const SearchBar = ({ placeholder, list }) => {
     const searchChange = (e) => {
         setSearchTerm(e.target.value.toLowerCase());
         paginate(1);
+        history("/curators?p.1");
     }
     return (
         <div>

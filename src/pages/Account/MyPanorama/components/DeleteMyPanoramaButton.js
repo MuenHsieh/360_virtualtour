@@ -8,26 +8,27 @@ import '../index.css';
 const DeleteMyPanoramaButton = (props) => {
     let history = useNavigate(); //use for Navigate on Previous
     const { pID } = props;
+    const { paginate } = props;
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleDelete = () => {
-        axios({ //isLogin()//先判斷是否登入，才能去紀錄使用者按下喜歡行為
+        axios({
             method: "get",
             url: "http://360.systemdynamics.tw/backendPHP/Control.php?act=deleteMyPanorama&pID=" + pID,
             dataType: "JSON",
             withCredentials: true
         })
-        .then((res) => {
-            setShow(false); //將Modal訊息隱藏
-            console.log(res);
-            if(res.data.isDelete){
-                alert("成功刪除此全景圖! " + res.data.cause);
-                window.location.reload();
-            }else{
-                alert(res.data.cause);
-            }
-        })
-        .catch(console.error);
+            .then((res) => {
+                setShow(false); //將 Modal 訊息隱藏
+                console.log(res);
+                if (res.data.isDelete) {
+                    alert("成功刪除此全景圖! " + res.data.cause);
+                    paginate(1);
+                    history("/myPanorama?p.1");
+                    window.location.reload();
+                }
+            })
+            .catch(console.error);
     };
     const handleClick = () => {
         axios({ //isLogin()//先判斷是否登入，才能去紀錄使用者按下喜歡行為
@@ -36,15 +37,15 @@ const DeleteMyPanoramaButton = (props) => {
             dataType: "JSON",
             withCredentials: true
         })
-        .then((res) => {
-            if (res.data.Login) {//有登入
-                setShow(true);
-            } else {//未登入
-                alert('Error: Session has been lost!!!');
-                history('/loginRegister');
-            }
-        })
-        .catch(console.error);
+            .then((res) => {
+                if (res.data.Login) {//有登入
+                    setShow(true);
+                } else {//未登入
+                    alert('Error: Session has been lost!!!');
+                    history('/loginRegister');
+                }
+            })
+            .catch(console.error);
     }
     return (
         <>

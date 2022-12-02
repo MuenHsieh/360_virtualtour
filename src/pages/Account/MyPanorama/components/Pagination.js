@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const Pagination = ({ postsPerPage, totalPages, paginate }) => {
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) { // 9/9
+    for (let i = 1; i <= Math.ceil(totalPages / postsPerPage); i++) { // 9/9
         pageNumbers.push(i);
     }
     return (
